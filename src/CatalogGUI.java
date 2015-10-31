@@ -138,20 +138,25 @@ public class CatalogGUI extends JPanel {
 	 * @return  a {@link JPanel} with the product information.
 	 */
 	private JPanel getDataFieldsPanel(ArrayList<DataField> dataFields) {
-        JPanel jPanel = new JPanel();
+        JPanel jPanel = new JPanel(new BorderLayout());
         //jPanel.setBorder(BorderFactory.createLineBorder(Color.blue));
-        jPanel.setPreferredSize(new Dimension(300, 180));
+        JPanel leftPart = new JPanel(new GridLayout(9, 1));
+        JPanel rightPart = new JPanel(new GridLayout(9, 1));
+        leftPart.setPreferredSize(new Dimension(80, 180));
+        rightPart.setPreferredSize(new Dimension(200, 180));
         for (DataField data : dataFields) {
-            JLabel name = new JLabel(data.getName()+":");
+            JLabel name = new JLabel(data.getName() + ":");
             JLabel value = new JLabel(data.getValue());
             name.setHorizontalAlignment(SwingConstants.LEFT);
             value.setHorizontalAlignment(SwingConstants.LEFT);
             name.setPreferredSize(new Dimension(80, 20));
             value.setPreferredSize(new Dimension(200, 20));
-            value.setBorder(BorderFactory.createLineBorder(Color.blue));
-            jPanel.add(name);
-            jPanel.add(value);
+            value.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+            leftPart.add(name);
+            rightPart.add(value);
         }
+        jPanel.add("West", leftPart);
+        jPanel.add("East", rightPart);
 		return jPanel;
 	}
 
